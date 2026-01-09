@@ -91,5 +91,7 @@ def main_game():
             permit()
         elif select == "5":
             print("Bye have a nice day\n")
+            print()
             break
+            
 main_game()
