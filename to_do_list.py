@@ -33,7 +33,7 @@ def done_func():
     global task_done
     task_done = int(input("enter the list no. you wanted to be marked as done : "))
     task_done = task_done - 1
-    todo[task_done] = "✅",todo[task_done]
+    todo[task_done] = "✅"+" "+todo[task_done]
     m = 0
     j = 1
     while m < len(todo):
