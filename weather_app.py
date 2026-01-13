@@ -2,7 +2,6 @@ from tkinter import *
 import requests
 from PIL import Image,ImageTk 
 
-
 root = Tk()
 root.title("weather app")
 root.geometry("400x600")
