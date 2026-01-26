@@ -32,8 +32,6 @@ def color_yellow():
 def clear():
     canvas.delete("all")    
 
-
-
 def brush_up():
     global brush_size
     brush_size += 1
