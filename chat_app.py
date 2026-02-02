@@ -5,17 +5,27 @@ root = Tk()
 root.title("Chat app")
 root.geometry("300x505")
 
-def message():
-    text_area.insert(END,a1.get() + "\n", "user")
-    text_area.insert(END,reply() + "\n\n","bot")    
+
+
+def bot_reply():
+    text_area.insert(END,reply() + "\n", "bot")
+
 
 def reply():
-    if a1.get() == "hi":
+    global c
+    if c == "hi":
          return "hello"
-    elif a1.get() == "how are you":
+    elif c == "how are you":
         return "I am fine, what about you?"
     else : 
          return "i didnt get it"       
+
+def message(event=None):
+    global c
+    c = a1.get()
+    text_area.insert(END,c + "\n", "user")
+    a1.delete(0,END)   
+    root.after(1000,bot_reply())
 
 
 a = Label(root,text="",bd=1,relief="solid",height=2,width=43,bg="green")
@@ -44,19 +54,26 @@ frame2.grid(row=3,column=0,columnspan=3)
 
 a1 = Entry(frame2,width=16,font=('Arial',20,'bold'))
 a1.pack(side="left")
+
+c = a1.get()
+
 button = Button(frame2,text="SEND",padx=7,pady=7,command=message)
 button.pack(side="left")
 
+a1.bind("<Return>", message)
 text_area.tag_config(
      "user",
     foreground="white",
     background = "green",
     justify = "right",
+    font=("Arial",16)
 )
 text_area.tag_config(
     "bot",
     foreground="black",
-    background="white" 
+    background="white",
+    font=("Arial",16) 
 )
+
 
 root.mainloop()
