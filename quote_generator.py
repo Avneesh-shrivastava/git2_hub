@@ -11,7 +11,7 @@ while i <= len(list):
     
     put = input("Press enter to get motivated!")
     if put == "":
-        print("\n",c,"\n")
+        print("\n","",c,"\n")
     else:
         print("I think you don't want to get motivated")
     i = i + 1    
