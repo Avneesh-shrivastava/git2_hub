@@ -32,9 +32,6 @@ def getting_data():
     print("l = ",l)
     print("rounded = ",price)
  
-    
-
-    
 
 def get_data_loop():
     while True:
