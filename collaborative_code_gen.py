@@ -42,7 +42,6 @@ print("Sum is:", sum)""",
         a = dict["add two numbers"]
         code_box.insert(END,a)
 
-
 def run_code():
     global process
     code = code_box.get("1.0",END)
@@ -57,8 +56,6 @@ def run_code():
     
     terminal.insert(END,process.stdout) 
      
-
-
 def start_server():
     port = 8080
     handler = http.server.SimpleHTTPRequestHandler
@@ -147,14 +144,6 @@ file.config(background="grey", padx=20)
 run = Button(top_bar,text="▶",width=3,bg="darkgrey",command=run_code)
 run.pack(padx=(750,10),side="right")
 
-# file_space = Text(root,bd=1,relief="solid",bg="darkgrey",height=40,width=20)
-# file_space.pack(side="left")
-
-# file_space.tag_config(
-#     "file_name",
-#     borderwidth = 2,
-#     relief = "solid"
-# )
 label = Label(root,text="Type prompt",fg="white",bg="black")
 label.pack(pady=(10,0))
 
