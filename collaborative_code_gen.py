@@ -9,39 +9,25 @@ import http.server
 import socketserver
 import threading
 import webbrowser
+from groq import Groq
 
+az = 1
 root = Tk()
 root.title("Collaborative code generator app")
 root.geometry("900x600")
 root.configure(background="black")
 
+client = Groq(api_key="groq_api_key")
 def generate_code():
-    global prompt
-    prompt = type_prompt.get()
-    dict = {
-        "hello world" : "print(\"hello world\")",
+    prompt = type_prompt.get().strip()
 
-        "loop" : '''for i in range(1, 11):
-    print(i) ''',
-
-        "add two numbers" : """a = 5
-b = 7
-sum = a + b
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    code_box.delete("1.0",END)
+    code_box.insert(END, response.choices[0].message.content)
     
-print("Sum is:", sum)""",
-
-    }
-   
-    if prompt == "hello world":
-        a = dict["hello world"]
-        code_box.insert(END,a)
-    if prompt == "loop":
-        a = dict["loop"]
-        code_box.insert(END,a)
-    if prompt == "add two numbers":
-        a = dict["add two numbers"]
-        code_box.insert(END,a)
-
 def run_code():
     global process
     code = code_box.get("1.0",END)
@@ -56,6 +42,7 @@ def run_code():
     
     terminal.insert(END,process.stdout) 
      
+
 def start_server():
     port = 8080
     handler = http.server.SimpleHTTPRequestHandler
@@ -72,8 +59,7 @@ def dropdown_functions(event):
     global i
     global file_path
     global file_list
-    # if i == "push" print(i)or i == "save" or i == "save as" or i == "open":
-    #     i = i + 1
+
     opt = variable.get()
     if i % 2 == 0 and opt == "save as":
         content = code_box.get("1.0",END)
